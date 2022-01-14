@@ -68,6 +68,8 @@ module powerbi.extensibility.visual {
             this.imageElement = document.createElement('img');
             this.imageElement.className = 'rcv_autoScaleImage';
 
+            
+
             this.imageDiv.appendChild(this.imageElement);
             
 
@@ -78,6 +80,9 @@ module powerbi.extensibility.visual {
                 order: "original",
                 addrect: "none",
             };
+            
+
+
 
             this.settings_labels_params = <VisualSettingsLabelsParams>{
                 show: false,
@@ -121,20 +126,20 @@ module powerbi.extensibility.visual {
             this.settings_labels_params = <VisualSettingsLabelsParams>{
                 show: getValue<boolean>(dataView.metadata.objects, 'settings_labels_params', 'show', false),
                 textSize: getValueMinMax<number>(dataView.metadata.objects, 'settings_labels_params', 'textSize', 10, 5, 50),
-                tl_col: getValue<string>(dataView.metadata.objects, 'settings_labels_params', 'tl_col', "red"),
+                tl_col: getValue<string>(dataView.metadata.objects, 'settings_labels_params', 'tl_col', "#00FF00"),
             };
             this.settings_coeff_params = <VisualSettingsCoeffParams>{
                 show: getValue<boolean>(dataView.metadata.objects, 'settings_coeff_params', 'show', false),
                 addCoef_col: getValue<string>(dataView.metadata.objects, 'settings_coeff_params', 'addCoef_col', "#000000"),
                 number_digits: getValue<string>(dataView.metadata.objects, 'settings_coeff_params', 'number_digits', "1"),
-                textSize: getValue<number>(dataView.metadata.objects, 'settings_coeff_params', 'textSize', 14)
+                textSize: getValue<number>(dataView.metadata.objects, 'settings_coeff_params', 'textSize', 50)
 
             };
             this.settings_additional_params = <VisualSettingsAdditionalParams>{
                 show: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'show', false),
                 showWarnings: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showWarnings', false)
             };
-
+            
             let imageUrl: string = null;
             if (dataView.scriptResult && dataView.scriptResult.payloadBase64) {
                 imageUrl = "data:image/png;base64," + dataView.scriptResult.payloadBase64;

@@ -283,13 +283,14 @@ if(nc > 1 && nr > 1){
   
   if(type == "upper")
   {
-    defMar = c(0.25, 0.25, 3.5, 0.1) + 0.5
+    defMar = c(0.25, 0.25, 0.25, 0.1) + 0.5
     tl.cex = tl.cex*0.95
   }
+  
   corrplot(M, method=method, order=order, type=type, addrect=addrect,
-           mar = defMar, tl.col = tl.col, tl.cex=tl.cex,
+            tl.col = tl.col, tl.cex=tl.cex,
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
-           cl.pos =clpos)
+           cl.pos =clpos, bg="#1a1a1a")
 }else{ #empty correlation plot
   plot.new()
   pbiWarning<-paste(pbiWarning, "Not enough input dimensions.", sep=" ")
