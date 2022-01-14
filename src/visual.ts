@@ -69,6 +69,7 @@ module powerbi.extensibility.visual {
             this.imageElement.className = 'rcv_autoScaleImage';
 
             this.imageDiv.appendChild(this.imageElement);
+            
 
             this.settings_corrplot_params = <VisualSettingsCorrplotParams>{
                 show: false,
@@ -99,10 +100,12 @@ module powerbi.extensibility.visual {
             let dataViews: DataView[] = options.dataViews;
             if (!dataViews || dataViews.length === 0)
                 return;
-
+            
             let dataView: DataView = dataViews[0];
             if (!dataView || !dataView.metadata)
                 return;
+
+            console.log(dataViews)
 
             this.settings_corrplot_params = <VisualSettingsCorrplotParams>{
                 show: getValue<boolean>(dataView.metadata.objects, 'settings_corrplot_params', 'show', false),
@@ -122,9 +125,9 @@ module powerbi.extensibility.visual {
             };
             this.settings_coeff_params = <VisualSettingsCoeffParams>{
                 show: getValue<boolean>(dataView.metadata.objects, 'settings_coeff_params', 'show', false),
-                addCoef_col: getValue<string>(dataView.metadata.objects, 'settings_coeff_params', 'addCoef_col', "black"),
+                addCoef_col: getValue<string>(dataView.metadata.objects, 'settings_coeff_params', 'addCoef_col', "#000000"),
                 number_digits: getValue<string>(dataView.metadata.objects, 'settings_coeff_params', 'number_digits', "1"),
-                textSize: getValue<number>(dataView.metadata.objects, 'settings_coeff_params', 'textSize', 8)
+                textSize: getValue<number>(dataView.metadata.objects, 'settings_coeff_params', 'textSize', 14)
 
             };
             this.settings_additional_params = <VisualSettingsAdditionalParams>{
@@ -202,7 +205,7 @@ module powerbi.extensibility.visual {
                             show: this.settings_coeff_params.show,
                             number_digits: this.settings_coeff_params.number_digits,
                             addCoef_col: this.settings_coeff_params.addCoef_col,
-                            textSize: this.settings_coeff_params.textSize,
+                            textSize: 35,
                         },
                         selector: null
                     });
