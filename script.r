@@ -297,12 +297,14 @@ if(nc > 1 && nr > 1){
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
            cl.pos =clpos, bg="#1a1a1a")
   usr <- par("usr")
+  cex <- par("tl.cex")
   plot.new()
   par(usr=usr)
-    corrplot(M, method=method, order=order, type=type, addrect=addrect,
-            tl.col = tl.col, tl.cex=tl.cex,
+  tl.cex = tl.cex*0.95
+  corrplot(M, method=method, order=order, type=type, addrect=addrect,
+            tl.col = tl.col, tl.cex=cex, 
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
-           cl.pos =clpos, bg="#1a1a1a",add=TRUE)
+           cl.pos =clpos,cl.col="white",  bg="#1a1a1a", add=TRUE)
 
 }else{ #empty correlation plot
   plot.new()
@@ -312,6 +314,6 @@ if(nc > 1 && nr > 1){
 if(showWarnings)
   {
   pbiWarning <- cutStr2Show(pbiWarning,strCex = 0.8, abbrTo = 100, isH = TRUE)
-  title(main = NULL, sub = pbiWarning, outer = FALSE, col.sub = "red", cex.sub = 0.75)
+  title(main = NULL, sub = pbiWarning, outer = FALSE, col.sub = "red", cex.sub = 0.5)
 }
 
