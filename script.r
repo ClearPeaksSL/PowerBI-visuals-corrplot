@@ -120,8 +120,8 @@ if(exists("settings_labels_params_show") && settings_labels_params_show == FALSE
   rm(list= ls(pattern = "settings_labels_params_"))
 if(exists("settings_coeff_params_show") && settings_coeff_params_show == FALSE)
   rm(list= ls(pattern = "settings_coeff_params_"))
-if(exists("settings_additional_params_show") && settings_additional_params_show == FALSE)
-  rm(list= ls(pattern = "settings_additional_params_"))
+#if(exists("settings_additional_params_show") && settings_additional_params_show == FALSE)
+#  rm(list= ls(pattern = "settings_additional_params_"))
   
 ##PBI_PARAM: Should warnings text be displayed?
 #Type:logical, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA
@@ -146,6 +146,8 @@ if(exists("settings_corrplot_params_mytype"))
 order='original' 
 if(exists("settings_corrplot_params_order"))
   order = settings_corrplot_params_order
+
+
 
 
 ##PBI_PARAM: number of clusters to be drawn on top of correlation matrix as rectangles 
@@ -207,6 +209,10 @@ if(exists("settings_coeff_params_textSize"))
 #Type:numeric, Default:1, Range:[1,3], PossibleValues:NA, 
 #Remarks: NA
 number.digits = 1*as.numeric(exists("settings_coeff_params_show"))
+
+## Do not touch ##
+back = backgroundColorParam_color
+
 
 if(exists("settings_coeff_params_number_digits"))
 {
@@ -291,11 +297,11 @@ if(nc > 1 && nr > 1){
   
 
   #png(filetag, color="#00FF00")
-  par(xpd = TRUE, bg = "#1a1a1a")
+  par(xpd = TRUE, bg = back)
   corrplot(M, method=method, order=order, type=type, addrect=addrect,
             tl.col = tl.col, tl.cex=tl.cex, 
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
-           cl.pos =clpos, bg="#1a1a1a")
+           cl.pos =clpos, bg=back)
   usr <- par("usr")
   cex <- par("tl.cex")
   plot.new()
@@ -304,7 +310,8 @@ if(nc > 1 && nr > 1){
   corrplot(M, method=method, order=order, type=type, addrect=addrect,
             tl.col = tl.col, tl.cex=cex, 
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
-           cl.pos =clpos,cl.col="white",  bg="#1a1a1a", add=TRUE)
+           cl.pos =clpos,cl.col="white", tl.srt = 45,  bg=back, add=TRUE)
+  
 
 }else{ #empty correlation plot
   plot.new()

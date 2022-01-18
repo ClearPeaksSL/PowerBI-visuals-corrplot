@@ -50,6 +50,11 @@ module powerbi.extensibility.visual {
         showWarnings: boolean;
     }
 
+    interface VisualSettingsBackgroundColorParam{
+        show: boolean;
+        color: string;
+    }
+
     export class Visual implements IVisual {
         private imageDiv: HTMLDivElement;
         private imageElement: HTMLImageElement;
@@ -58,6 +63,7 @@ module powerbi.extensibility.visual {
         private settings_labels_params: VisualSettingsLabelsParams;
         private settings_coeff_params: VisualSettingsCoeffParams;
         private settings_additional_params: VisualSettingsAdditionalParams;
+        private backgroundColorParam: VisualSettingsBackgroundColorParam;
 
 
         public constructor(options: VisualConstructorOptions) {
@@ -98,6 +104,10 @@ module powerbi.extensibility.visual {
             this.settings_additional_params = <VisualSettingsAdditionalParams>{
                 show: false,
                 showWarnings: false,
+            };
+            this.backgroundColorParam = <VisualSettingsBackgroundColorParam>{
+                show: true,
+                color: "#1a1a1a",
             };
         }
 
@@ -140,6 +150,11 @@ module powerbi.extensibility.visual {
             this.settings_additional_params = <VisualSettingsAdditionalParams>{
                 show: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'show', false),
                 showWarnings: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showWarnings', false)
+            };
+
+            this.backgroundColorParam = <VisualSettingsBackgroundColorParam>{
+                show: getValue<boolean>(dataView.metadata.objects, 'backgroundColorParam', 'show', true),
+                color: getValue<string>(dataView.metadata.objects, 'backgroundColorParam', 'color', "#1a1a1a"),
             };
             
             let imageUrl: string = null;
@@ -227,6 +242,16 @@ module powerbi.extensibility.visual {
                         selector: null
                     });
                     break;
+                case 'backgroundColorParam':
+                    objectEnumeration.push({
+                        objectName: objectName,
+                        properties: {
+                            show: this.backgroundColorParam.show,
+                            color: this.backgroundColorParam.color,
+                        },
+                        selector: null
+                    });
+                break;
             };
 
             return objectEnumeration;

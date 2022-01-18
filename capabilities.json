@@ -216,6 +216,19 @@
             }
         }
     },
+    "backgroundColorParam":{
+      "displayName": "Background Color",
+        "description": "Control the background",
+        "properties": {
+          "show": {
+                "type": {"bool": true}
+            },
+            "color": {
+              "displayName": "Color",
+              "type": { "fill": { "solid": { "color": true }}}
+            }
+        }
+    },
         "settings_coeff_params":{
         "displayName": "Correlation coefficients",
          "description": "Control the appearance of correlation coefficients in the plot",
