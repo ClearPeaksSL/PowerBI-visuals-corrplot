@@ -110,6 +110,8 @@ module powerbi.extensibility.visual {
             if (!dataView || !dataView.metadata)
                 return;
 
+            debugger;
+
             console.log(dataViews)
 
             this.settings_corrplot_params = <VisualSettingsCorrplotParams>{

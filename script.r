@@ -224,7 +224,7 @@ if(number.digits == 0)
 ##PBI_PARAM: the default margin definition of the plot
 #Type:vector, Default:c(1.0, 0.75, 0.75, 0.6), Range:NA, PossibleValues:NA, 
 #Remarks: NA
-defMar = c(0.5, 0.25, 0.25, 0.1) + 0.5
+defMar = c(0,0,0,0)
 
 MAX_CHAR_TL = 50 # maximum characters for text label
 MAX_PART_TL = 0.5 # maximum space for text label
@@ -279,18 +279,31 @@ if(!verifyIfToShowColorScale(nc))
 if(nc > 1 && nr > 1){
   #PBI_COMMENT: compute correlation matrix, allow for missing values
   M <- cor(dataset, use="pairwise.complete.obs")
-  par(xpd = TRUE)
+  par(xpd = TRUE )
   
   if(type == "upper")
   {
     defMar = c(0.25, 0.25, 0.25, 0.1) + 0.5
     tl.cex = tl.cex*0.95
+    
   }
+  filetag <- "corrplot_result.png"
   
+
+  #png(filetag, color="#00FF00")
+  par(xpd = TRUE, bg = "#1a1a1a")
   corrplot(M, method=method, order=order, type=type, addrect=addrect,
-            tl.col = tl.col, tl.cex=tl.cex,
+            tl.col = tl.col, tl.cex=tl.cex, 
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
            cl.pos =clpos, bg="#1a1a1a")
+  usr <- par("usr")
+  plot.new()
+  par(usr=usr)
+    corrplot(M, method=method, order=order, type=type, addrect=addrect,
+            tl.col = tl.col, tl.cex=tl.cex,
+           number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
+           cl.pos =clpos, bg="#1a1a1a",add=TRUE)
+
 }else{ #empty correlation plot
   plot.new()
   pbiWarning<-paste(pbiWarning, "Not enough input dimensions.", sep=" ")
@@ -299,6 +312,6 @@ if(nc > 1 && nr > 1){
 if(showWarnings)
   {
   pbiWarning <- cutStr2Show(pbiWarning,strCex = 0.8, abbrTo = 100, isH = TRUE)
-  title(main = NULL, sub = pbiWarning, outer = FALSE, col.sub = "gray50", cex.sub = 0.75)
+  title(main = NULL, sub = pbiWarning, outer = FALSE, col.sub = "red", cex.sub = 0.75)
 }
 
