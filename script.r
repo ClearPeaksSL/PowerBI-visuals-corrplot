@@ -211,7 +211,9 @@ if(exists("settings_coeff_params_textSize"))
 number.digits = 1*as.numeric(exists("settings_coeff_params_show"))
 
 ## Do not touch ##
-back = backgroundColorParam_color
+#back <- "#1a1a1a"
+if(exists("backgroundColorParam_color")) back = backgroundColorParam_color else back = "#1a1a1a"
+#back = backgroundColorParam_color
 
 
 if(exists("settings_coeff_params_number_digits"))
@@ -223,6 +225,8 @@ if(exists("settings_coeff_params_number_digits"))
     number.digits = 0
   }
 }
+
+
 
 if(number.digits == 0)
   addCoef.col = NULL
@@ -303,14 +307,12 @@ if(nc > 1 && nr > 1){
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
            cl.pos =clpos, bg=back)
   usr <- par("usr")
-  cex <- par("tl.cex")
   plot.new()
   par(usr=usr)
-  tl.cex = tl.cex*0.95
   corrplot(M, method=method, order=order, type=type, addrect=addrect,
-            tl.col = tl.col, tl.cex=cex, 
+            tl.col = tl.col, tl.cex=tl.cex, 
            number.digits=number.digits, number.cex=number.cex, addCoef.col=addCoef.col, 
-           cl.pos =clpos,cl.col="white", tl.srt = 45,  bg=back, add=TRUE)
+           cl.pos ='r', tl.srt = 45,  bg=back, add=TRUE)
   
 
 }else{ #empty correlation plot
