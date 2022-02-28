@@ -1,6 +1,7 @@
 # PowerBI-visuals-corrplot
 
-![Correlation plot screenshot](https://az158878.vo.msecnd.net/marketing/Partner_21474836617/Product_42949680603/Asset_7a868097-1931-41b4-ae52-80b66476dbf1/CorrelationPlotscreenshot2.png)
+![image](https://user-images.githubusercontent.com/22683671/155997143-4cfa7fbb-db49-45b9-a045-487d34efc439.png)
+
 # Overview
 Correlation plots can be used to quickly find insights. It is used to investigate the dependence between multiple variables at the same time and to highlight the most correlated variables in a data table. In this visual, correlation coefficients are colored according to the value. Correlation matrix can be also reordered according to the degree of association between variables or clustered using hierarchical clustering algorithm. The usage of this visual is very simple and intuitive.
 
